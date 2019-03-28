@@ -26,8 +26,8 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hwo-PS-fSM" secondAttribute="bottom" id="35F-eF-Ki6"/>
                             <constraint firstItem="hwo-PS-fSM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="5Yd-3D-MXq"/>
-                            <constraint firstItem="hwo-PS-fSM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="AM8-do-BcO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hwo-PS-fSM" secondAttribute="trailing" id="thN-yK-IGy"/>
+                            <constraint firstItem="hwo-PS-fSM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AM8-do-BcO"/>
+                            <constraint firstAttribute="trailing" secondItem="hwo-PS-fSM" secondAttribute="trailing" id="thN-yK-IGy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
