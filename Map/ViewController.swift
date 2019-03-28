@@ -46,7 +46,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         mapView.region = MKCoordinateRegion(
             center: location.coordinate,
-            latitudinalMeters: meters * CLLocationDistance(view.bounds.size.height / view.bounds.size.width),
+            latitudinalMeters: meters * CLLocationDistance(mapView.frame.height / mapView.frame.width),
             longitudinalMeters: meters);
         
         geocoder.reverseGeocodeLocation(location, completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) in
