@@ -9,7 +9,7 @@
 import UIKit;
 import MapKit;
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     let locationManager: CLLocationManager = CLLocationManager(); //find device's latitude and longitude
     let geocoder: CLGeocoder = CLGeocoder();
     
@@ -19,13 +19,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.viewDidLoad();
         
         // Do any additional setup after loading the view.
-        mapView.delegate = self;
-
         locationManager.requestWhenInUseAuthorization();     //Allow "Map" to access your loc...?
-        assert(CLLocationManager.locationServicesEnabled()); //Settings -> Privacy -> Location
+        guard CLLocationManager.locationServicesEnabled() else { //Settings -> Privacy -> Location
+            fatalError("location sevices not enabled");
+        }
         locationManager.desiredAccuracy = kCLLocationAccuracyBest; //default; uses power
         locationManager.delegate = self;
         locationManager.startUpdatingLocation();
+        mapView.delegate = self;
     }
 
     // MARK: - Protocol CLLocationManagerDelegate
@@ -34,7 +35,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         manager.stopUpdatingLocation();    //save electricity
         
         //last location in the array of locations
-        let location: CLLocation = locations.last! as CLLocation;
+        guard let location: CLLocation = locations.last else {
+            fatalError("locations is an empty array");
+        }
         print("update Lat \(location.coordinate.latitude)° Long \(location.coordinate.longitude)°");
         
         /*
@@ -49,8 +52,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             latitudinalMeters: meters * CLLocationDistance(mapView.frame.height / mapView.frame.width),
             longitudinalMeters: meters);
         
-        geocoder.reverseGeocodeLocation(location, completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) in
-            
+        geocoder.reverseGeocodeLocation(location) {(placemarks: [CLPlacemark]?, error: Error?) in
             if error != nil {
                 print("geocoder error: \(error!)");
                 return;
@@ -77,7 +79,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 pointAnnotation.coordinate = c;
                 self.mapView.addAnnotation(pointAnnotation);
             }
-        });
+        }
     }
     
     // MARK: - Protocol MKMapViewDelegate
@@ -89,7 +91,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let identifier: String = "Annotation";
         
-        //Try to reuse an MKAnnotationView.
+        //Try to reuse an existing MKAnnotationView.
         if let annotationView: MKAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
             annotationView.annotation = annotation;
             return annotationView;
