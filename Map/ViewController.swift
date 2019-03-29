@@ -26,8 +26,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
         locationManager.desiredAccuracy = kCLLocationAccuracyBest; //default; uses power
         locationManager.delegate = self;
-        locationManager.startUpdatingLocation();
         mapView.delegate = self;
+        locationManager.startUpdatingLocation();
     }
 
     // MARK: - Protocol CLLocationManagerDelegate
