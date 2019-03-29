@@ -76,8 +76,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             }
 
             for placemark in placemarks {    //placemark is a CLPlacemark
-                print("placemark.subThoroughfare = \(placemark.subThoroughfare!)");
-                print("placemark.thoroughfare = \(placemark.thoroughfare!)");
+                print("""
+                    placemark.subThoroughfare = \(placemark.subThoroughfare!)
+                    placemark.thoroughfare = \(placemark.thoroughfare!)
+                    placemark.postalCode = \(placemark.postalCode!)
+                    """);
+
                 let c: CLLocationCoordinate2D = location.coordinate;
                 let ns: String = c.latitude  >= 0 ? "N" : "S";
                 let ew: String = c.longitude >= 0 ? "E" : "W";
