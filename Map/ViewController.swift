@@ -107,7 +107,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         //If necessary, create a new MKPinAnnotationView.
         let pinAnnotationView: MKPinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier);
         pinAnnotationView.canShowCallout = true;   //can display info bubble
-        //pinAnnotationView.pinTintColor = .green; //default is .red
+        //pinAnnotationView.pinTintColor = MKPinAnnotationView.greenPinColor();   //default is red
         return pinAnnotationView;
     }
     
