@@ -40,7 +40,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
 
         print("""
-            locationManager(_:didUpdateLocations:)
+            locationManager(_:didUpdateLocations:), locations.count = \(locations.count)
             latitude \(location.coordinate.latitude)°
             longitude \(location.coordinate.longitude)°
             altitude \(location.altitude) meters
