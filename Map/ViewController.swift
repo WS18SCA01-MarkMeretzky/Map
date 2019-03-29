@@ -44,6 +44,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             latitude \(location.coordinate.latitude)°
             longitude \(location.coordinate.longitude)°
             altitude \(location.altitude) meters
+
             """);
         
         /*
