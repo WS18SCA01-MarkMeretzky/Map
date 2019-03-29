@@ -98,16 +98,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         let identifier: String = "Annotation";
         
-        //Try to reuse an existing MKAnnotationView.
-        if let annotationView: MKAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
-            annotationView.annotation = annotation;
-            return annotationView;
+        //Try to reuse an existing MKPinAnnotationView.
+        if let pinAnnotationView: MKPinAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
+            pinAnnotationView.annotation = annotation;
+            return pinAnnotationView;
         }
         
-        //If necessary, create a new MKAnnotationView.
-        let annotationView: MKAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier);
-        annotationView.canShowCallout = true;   //can display info bubble
-        return annotationView;
+        //If necessary, create a new MKPinAnnotationView.
+        let pinAnnotationView: MKPinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier);
+        pinAnnotationView.canShowCallout = true;   //can display info bubble
+        //pinAnnotationView.pinTintColor = .green; //default is .red
+        return pinAnnotationView;
     }
     
 }
