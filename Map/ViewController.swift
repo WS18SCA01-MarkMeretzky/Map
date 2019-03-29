@@ -99,7 +99,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         let identifier: String = "Annotation";
         
         //Try to reuse an existing MKPinAnnotationView.
-        if let pinAnnotationView: MKPinAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
+        if let pinAnnotationView: MKPinAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
             pinAnnotationView.annotation = annotation;
             return pinAnnotationView;
         }
