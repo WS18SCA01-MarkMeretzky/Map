@@ -38,7 +38,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         guard let location: CLLocation = locations.last else {
             fatalError("locations is an empty array");
         }
-        print("update Lat \(location.coordinate.latitude)° Long \(location.coordinate.longitude)°");
+
+        print("""
+            locationManager(_:didUpdateLocations:)
+            latitude \(location.coordinate.latitude)°
+            longitude \(location.coordinate.longitude)°
+            altitude \(location.altitude) meters
+            """);
         
         /*
          Create a region and put it into the MKMapView.
