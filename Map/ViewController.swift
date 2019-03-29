@@ -19,10 +19,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         super.viewDidLoad();
         
         // Do any additional setup after loading the view.
-        locationManager.requestWhenInUseAuthorization();     //Allow "Map" to access your loc...?
+        locationManager.requestWhenInUseAuthorization(); //Allow "Map" to access your location?
         guard CLLocationManager.locationServicesEnabled() else { //Settings -> Privacy -> Location
             fatalError("location sevices not enabled");
         }
+
         locationManager.desiredAccuracy = kCLLocationAccuracyBest; //default; uses power
         locationManager.delegate = self;
         locationManager.startUpdatingLocation();
