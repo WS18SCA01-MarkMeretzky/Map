@@ -106,12 +106,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         //Try to reuse an existing MKPinAnnotationView.
         if let pinAnnotationView: MKPinAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MKPinAnnotationView {
-            pinAnnotationView.annotation = pointAnnotation;
+            pinAnnotationView.annotation = annotation;
             return pinAnnotationView;
         }
         
         //If necessary, create a new MKPinAnnotationView.
-        let pinAnnotationView: MKPinAnnotationView = MKPinAnnotationView(annotation: pointAnnotation, reuseIdentifier: reuseIdentifier);
+        let pinAnnotationView: MKPinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier);
         pinAnnotationView.canShowCallout = true;   //can display info bubble
         //pinAnnotationView.pinTintColor = MKPinAnnotationView.greenPinColor();   //default is red
         return pinAnnotationView;
