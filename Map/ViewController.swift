@@ -97,8 +97,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     // MARK: - Protocol MKMapViewDelegate
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let pointAnnotation: MKPointAnnotation = annotation as? MKPointAnnotation else {
-            fatalError("expected MKPointAnnotation instead of \(type(of: annotation))");
+        print("mapView(_:viewFor:) receieved \(type(of: annotation))");
+        if !(annotation is MKPointAnnotation) {
+            return nil;
         }
         
         let reuseIdentifier: String = "Annotation";
