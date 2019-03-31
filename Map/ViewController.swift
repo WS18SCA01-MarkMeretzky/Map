@@ -62,9 +62,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             longitudinalMeters: meters);
         
         geocoder.reverseGeocodeLocation(location) {(placemarks: [CLPlacemark]?, error: Error?) in
-            if error != nil {
-                print("geocoder error: \(error!)");
-                return;
+            guard let error: Error = error else {
+                fatalError("geocoder error: \(error)");
             }
             
             guard let placemarks: [CLPlacemark] = placemarks else {
@@ -98,14 +97,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     // MARK: - Protocol MKMapViewDelegate
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is MKPointAnnotation else {
-            return nil;
+        guard let pointAnnotation: MKPointAnnotation = annotation as? MKPointAnnotation else {
+            fatalError("expected MKPointAnnotation instead of \(type(of: annotation))");
         }
         
-        let identifier: String = "Annotation";
+        let reuseIdentifier: String = "Annotation";
         
         //Try to reuse an existing MKPinAnnotationView.
-        if let pinAnnotationView: MKPinAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+        if let pinAnnotationView: MKPinAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MKPinAnnotationView {
             pinAnnotationView.annotation = annotation;
             return pinAnnotationView;
         }
