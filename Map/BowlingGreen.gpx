@@ -8,6 +8,7 @@
      -->
     <wpt lat="40.705745" lon="-74.013718">
         <name>Bowling Green</name>
+        <ele>24</ele>   <!-- 8th floor -->
         
         <!--
          Optionally provide a time element for each waypoint. Xcode will interpolate movement
