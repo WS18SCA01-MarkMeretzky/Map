@@ -62,8 +62,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             longitudinalMeters: meters);
         
         geocoder.reverseGeocodeLocation(location) {(placemarks: [CLPlacemark]?, error: Error?) in
-            guard let error: Error = error else {
-                fatalError("geocoder error: \(error)");
+            if let error: Error = error {
+                fatalError("error = \(error)");
             }
             
             guard let placemarks: [CLPlacemark] = placemarks else {
